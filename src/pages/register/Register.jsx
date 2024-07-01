@@ -26,7 +26,7 @@ const Register = () => {
     setPassword(passwordRef.current.value);
     setUsername(usernameRef.current.value);
     try {
-      await axios.post("auth/register", { email, username, password });
+      await axios.post("https://backendnetflix-paxc.onrender.com/api/auth/register", { email, username, password });
       history.push("/login");
     } catch (err) {
       console.error("Registration error:", err);
