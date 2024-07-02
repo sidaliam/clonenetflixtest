@@ -2,6 +2,7 @@ import { InfoOutlined, PlayArrow } from "@material-ui/icons";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import "./featured.scss";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 export default function Featured({ type, setGenre }) {
   const [content, setContent] = useState({});
@@ -9,12 +10,16 @@ export default function Featured({ type, setGenre }) {
   useEffect(() => {
     const getRandomContent = async () => {
       try {
-        const res = await axios.get(`https://backendnetflix-paxc.onrender.com/api/movies/random?type=${type}`, {
-          headers: {
-            token:
-              "Bearer "+JSON.parse(localStorage.getItem("user")).accessToken,
-          },
-        });
+        const res = await axios.get(
+          `https://backendnetflix-paxc.onrender.com/api/movies/random?type=${type}`,
+          {
+            headers: {
+              token:
+                "Bearer " +
+                JSON.parse(localStorage.getItem("user")).accessToken,
+            },
+          }
+        );
         setContent(res.data[0]);
       } catch (err) {
         console.log(err);
@@ -56,10 +61,13 @@ export default function Featured({ type, setGenre }) {
         <img src={content.imgTitle} alt="" />
         <span className="desc">{content.desc}</span>
         <div className="buttons">
-          <button className="play">
-            <PlayArrow />
-            <span>Play</span>
-          </button>
+          <Link to={{ pathname: "/watch", state: { movie : content } }}>
+            <button className="play">
+              <PlayArrow />
+              <span>Play</span>
+            </button>
+          </Link>
+
           <button className="more">
             <InfoOutlined />
             <span>Info</span>
