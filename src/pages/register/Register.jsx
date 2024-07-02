@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useRef, useState } from "react";
-import { useHistory ,NavLink} from "react-router-dom";
+import { useHistory, NavLink } from "react-router-dom";
 import "./register.scss";
 
 const Register = () => {
@@ -26,7 +26,10 @@ const Register = () => {
     setPassword(passwordRef.current.value);
     setUsername(usernameRef.current.value);
     try {
-      await axios.post("https://backendnetflix-paxc.onrender.com/api/auth/register", { email, username, password });
+      await axios.post(
+        "https://backendnetflix-paxc.onrender.com/api/auth/register",
+        { email, username, password }
+      );
       history.push("/login");
     } catch (err) {
       console.error("Registration error:", err);
@@ -43,7 +46,6 @@ const Register = () => {
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/2560px-Netflix_2015_logo.svg.png"
             alt=""
           />
-
         </div>
       </div>
       <div className="container">
@@ -55,23 +57,28 @@ const Register = () => {
         {!email ? (
           <div className="input">
             <input type="email" placeholder="email address" ref={emailRef} />
+            <br />
+
             <button className="registerButton" onClick={handleStart}>
-              Get Started
+              S'inscrire
             </button>
-
-            <button className="registerButton" onClick={handleLogin}>Sign In</button>
-
           </div>
         ) : (
           <form className="input">
             <input type="text" placeholder="username" ref={usernameRef} />
             <input type="password" placeholder="password" ref={passwordRef} />
             <button className="registerButton" onClick={handleFinish}>
-              Start
+              Commencez
             </button>
-
           </form>
         )}
+        <br />
+        <br />
+        <br />
+  
+        <button className="logbutton" onClick={handleLogin}>
+          Se Connecter
+        </button>
       </div>
     </div>
   );
