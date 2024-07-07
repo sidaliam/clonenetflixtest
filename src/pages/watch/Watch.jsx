@@ -6,6 +6,7 @@ export default function Watch() {
   const location = useLocation();
   const movie = location.state?.movie;
 
+  
   return (
     <div className="watch">
       <Link to="/">
@@ -15,16 +16,7 @@ export default function Watch() {
         </div>
       </Link>
       {movie ? (
-        <video className="video" autoPlay progress controls src={movie.video}>
-          <track
-            src={movie.subtitles.src}
-            kind="subtitles"
-            srcLang="en"
-            label="English"
-            default
-          />
-          {/* Ajoutez plus de pistes de sous-titres ici */}
-        </video>
+        <video className="video" autoPlay progress controls src={movie.video} />
       ) : (
         <p>Movie not found</p>
       )}
